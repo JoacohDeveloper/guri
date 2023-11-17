@@ -1,16 +1,14 @@
+import { SESSION_MAX_AGE } from "@/app/constants";
 import NextAuth from "next-auth/next"
 import CredentialsProvider from "next-auth/providers/credentials"
+
+
 const handler =
  NextAuth({
     providers: [
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                username: {
-                    label: "Username",
-                    type: "text",
-                    placeholder: "username"
-                },
                 email: {
                     label: "Email",
                     type: "email",
@@ -22,16 +20,34 @@ const handler =
                 }
             },
             async authorize(credentials, req) {
-                    const user = credentials;
-                    
-                return user
+                const response = await fetch(`${process.env.NEXTAUTH_URL}/api/user/login`, {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(credentials)
+                })
+                const data = await response.json()
+                if(!response.ok) throw data
+                return data
             }
         })
     ],
     pages: {
         signOut: "/",
-        signIn: "/"
-    }
+        signIn: "/account/login",
+    },
+    callbacks: {
+        async jwt({ token, user }) {
+            return { ...token, ...user };
+          },
+          async session({ session, token }) {
+            session.user = token;
+            session.expires = SESSION_MAX_AGE
+            return session;
+          },
+    },
+    
 },
 )
 

@@ -1,0 +1,24 @@
+
+
+//Mobile
+
+@mixin Mobile() {
+    @media screen and (min-width: 475px) {
+        @content;
+    }
+}
+
+//Tablet
+@mixin Tablet() {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+//Desktop
+@mixin Desktop() {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+

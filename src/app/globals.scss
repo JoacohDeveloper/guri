@@ -1,4 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./ui/vars";
+@import "./ui/mixins";
 
+.error {
+  color: red;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: unset;
+}
+
+
+
+
+//Index page
+.banner {
+  height: 75vh;
+  width: 100%;
+  display: flex;
+  background-image: linear-gradient(to right, rgb(0, 0, 0, .6), rgb(0, 0, 0, .8)), url(./ui/img/banner.webp);
+  background-position: center center;
+  background-size: cover;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  font-weight: bold;
+  padding: .8rem;
+  width: 60%;
+  font-size: 2rem;
+  @include Tablet {
+    font-size: 3rem;
+  }
+  margin-bottom: 2rem;
+  color: $white;
+
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+
+
+  

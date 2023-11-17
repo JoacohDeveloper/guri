@@ -1,34 +1,21 @@
 "use client"
-
-import { signIn, signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import React from 'react'
+import Style from "./globals.scss"
+import Button from './ui/components/button'
+
 export default function Home() {
-  const router = useRouter()
-  async function handleSignIn() {
-      const responseNextAuth = await signIn("credentials", 
-        {
-          username: "juan",
-          email: "juan@eees",
-          password: "asas",
-          redirect: false
-        }
-      )
-
-      if(responseNextAuth?.error) {
-        console.log(responseNextAuth.error)
-        return
-      }
-
-      router.push("/dashboard")
-
-  }
-  
   return (
-    <div>
-      <p>/</p>
-      <button onClick={handleSignIn}>Login</button>
-      <button onClick={() => signOut()}>SignOut</button>
-    </div>
+    <main>
+      <section className="banner">
+        <div className='title'>  
+          <h2>
+            We have the Product which you are Searching for.
+          </h2>
+          <Button><Link href={"/shop/offers"}>Offers</Link></Button>
+        </div>
+      </section>
+
+    </main>
   )
 }

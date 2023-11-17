@@ -1,0 +1,68 @@
+@use "../../ui/mixins" as m;
+@use "../../ui/vars" as v;
+
+
+
+
+.main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+
+
+.form {
+    border: 1px solid v.$gray;
+    border-radius: .8rem;
+    padding: 1rem 5rem;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+
+    label {
+        font-size: 1.2rem;
+    }
+
+    input:not([type="submit"]) {
+        padding: .3rem .5rem;
+        width: 100%;
+        outline: none;
+        border: 1px solid v.$blue;
+        border-radius: .3rem;
+        margin-bottom: 2rem;
+    }
+
+
+    button {
+        background-color: v.$black;
+        padding: .8rem 1rem;
+        color: v.$white;
+        font-weight: bold;
+        border-radius: .2rem;
+
+        &:hover {
+            background-color: lighten(v.$black, 8);
+        }
+    }
+}
+
+
